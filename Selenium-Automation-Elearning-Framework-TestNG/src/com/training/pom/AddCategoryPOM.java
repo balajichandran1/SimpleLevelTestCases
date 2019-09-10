@@ -1,0 +1,153 @@
+package com.training.pom;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class AddCategoryPOM {
+
+private WebDriver driver; 
+	
+	public AddCategoryPOM(WebDriver driver) {
+	this.driver = driver; 
+		PageFactory.initElements(driver, this);
+	}
+	//Finding Username
+	@FindBy(xpath="//*[@id='input-username']")
+	private WebElement userName ;
+	
+	//username method
+			public void sendUserName(String userName) {
+					this.userName.clear();
+					this.userName.sendKeys(userName);
+				}
+		
+	//Finding Password	
+	@FindBy(xpath="//*[@id='input-password']")
+	private WebElement password;
+	
+	//password method
+	public void sendPassword(String password) {
+		this.password.clear(); 
+		this.password.sendKeys(password); 
+	}
+	
+	//Clicking on login button
+	@FindBy(xpath="//*[@type='submit']")
+	private WebElement loginBtn; 
+		
+		//login button method	
+			public void clickLoginBtn() {
+				this.loginBtn.click(); 
+			}
+	
+    //Clicking on Catelog icon
+	@FindBy(xpath="//*[@class='fa fa-tags fa-fw']")		
+	private WebElement catelog;
+	
+	//Selecting Catelog icon
+	public void clickCatelog() {
+		this.catelog.click();
+	}
+	//Clicking on Categories Option
+	@FindBy(linkText = "Categories")
+	private WebElement Categories;
+	
+	// Method to click Categories link
+		public void clickCategories() {
+			Actions Act = new Actions(driver);
+			Action mouseover = Act.moveToElement(Categories).build();
+			mouseover.perform();
+			//Clicking on Categories
+			Act.sendKeys(Categories,(Keys.RETURN)).perform();
+		}
+	//Clicking on Add New Button
+	@FindBy(xpath="//*[@class='btn btn-primary']")
+	private WebElement Addnew;
+	
+	//Selecting Addnew button
+		public void clickAddnew() {
+			this.Addnew.click();
+		}
+	//Finding Category Name field & entering values
+	@FindBy(xpath="//*[@id='input-name1']")
+	private WebElement CategoryName;
+	
+	//Selecting and entering values in Category Name field
+		public void sendCategoryName(String CategoryName) {
+		this.CategoryName.clear();
+		this.CategoryName.sendKeys(CategoryName);
+		}
+	
+	   //Finding Description Field and entering credentials
+	    @FindBy(xpath="//*[@class='note-editable panel-body']")
+	    private WebElement DescriptionText;
+	
+	     //Selecting and entering values in Description field
+			public void sendDescription(String DescriptionText) {
+			this.DescriptionText.clear();
+			this.DescriptionText.sendKeys(DescriptionText);
+			}
+			
+       //Finding Meta Tag title field and entering values in it
+	   @FindBy(xpath="//*[@id='input-meta-title1']")	
+	   private WebElement MetatagTitleText;
+	 
+	   //Selecting and entering values in MetatagTitle field
+		public void sendMetatagTitle(String MetatagTitleText) {
+		this.MetatagTitleText.clear();
+		this.MetatagTitleText.sendKeys(MetatagTitleText);
+		}
+		
+	   //Finding MetatagDescription field and entering Values in it
+		@FindBy(xpath="//*[@id='input-meta-description1']")
+		private WebElement MetatagDescriptionText;
+		
+		//Selecting and entering values in Metatagdescription field
+		public void sendMetatagDescription(String MetatagDescriptionText) {
+		this.MetatagDescriptionText.clear();
+		this.MetatagDescriptionText.sendKeys(MetatagDescriptionText);
+		}
+	 
+		//Finding DataTab
+		@FindBy(xpath="//*[@id=\"form-category\"]/ul/li[2]/a")
+		private WebElement MovetoDatatab;
+		
+	    //Moving to Data Tab
+			public void Datatab() throws InterruptedException {
+			this.MovetoDatatab.click();
+			Thread.sleep(3000);
+			//scrolling down to see the defaultcontent
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			            
+		    }
+			//Finding DesignTab
+			@FindBy(xpath="//*[@id=\"form-category\"]/ul/li[3]/a")
+			private WebElement MovetoDesigntab;
+			
+			public void Designtab() throws InterruptedException {
+				this.MovetoDesigntab.click();
+				Thread.sleep(2000);
+						            
+			}
+		    //Finding Save Button
+			@FindBy(xpath="//*[@id=\"content\"]/div[1]/div/div/button")
+			private WebElement SaveButton;
+			
+			//Method to click on Save Button
+			public void clickSave() {
+				this.SaveButton.click();
+			}
+			
+					
+			
+			
+}
+
+
